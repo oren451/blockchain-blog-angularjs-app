@@ -26,14 +26,14 @@
   </style>
 </head>
 
-<body ng-app="blockchainBlog">
-  <md-toolbar ng-controller="toolbarController">
-    <div class="md-toolbar-tools" ng-controller="profileController">
+<body data-ng-app="blockchainBlog">
+  <md-toolbar data-ng-controller="toolbarController">
+    <div class="md-toolbar-tools" data-ng-controller="profileController">
       <h2> <span> Blockchain Blog </span> </h2>
       <span flex></span>
-      <md-button aria-label="Login" ng-click="toolbarController.login()" ng-if="toolbarController.auth.isAuthenticated()">Login</md-button>
-      <md-button aria-label="Profile" ui-serf="profile" ng-if="toolbarController.auth.isAuthenticated()">Profile</md-button>
-      <md-button aria-label="Logout" ng-click="toolbarController.logout()" ng-if="toolbarController.auth.isAuthenticated()">Logout</md-button>
+      <md-button aria-label="Login" data-ng-click="toolbarController.login()" data-ng-if="toolbarController.auth.isAuthenticated()">Login</md-button>
+      <md-button aria-label="Profile" ui-serf="profile" data-ng-if="toolbarController.auth.isAuthenticated()">Profile</md-button>
+      <md-button aria-label="Logout" data-ng-click="toolbarController.logout()" data-ng-if="toolbarController.auth.isAuthenticated()">Logout</md-button>
     </div>
   </md-toolbar>
   <div class="row">
@@ -58,8 +58,8 @@
               <img src="{{ user.profile.picture }}" alt="profile-picture">
             </div>
             <md-card-actions layout="column" layout-align="end center">
-              <md-button ng-click="user.getMessage()">Get Message</md-button>
-              <md-button ng-click="user.getSecretMessage()">Get Secret Message</md-button>
+              <md-button data-ng-click="user.getMessage()">Get Message</md-button>
+              <md-button data-ng-click="user.getSecretMessage()">Get Secret Message</md-button>
             </md-card-actions>
           </md-card-media>
           <md-card-title-text>
@@ -76,13 +76,13 @@
     <div class="page-header">
       <h1>Blockchain Blog</h1>
     </div>
-    <div ng-repeat="post in posts | orderBy:'-upvotes'">
-      <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"></span> {{post.upvotes}}
+    <div data-ng-repeat="post in posts | orderBy:'-upvotes'">
+      <span class="glyphicon glyphicon-thumbs-up" data-ng-click="incrementUpvotes(post)"></span> {{post.upvotes}}
       <span style="font-size:20px; margin-left:10px;">
-              <a ng-show="post.link" href="{{post.link}}">
+              <a data-ng-show="post.link" href="{{post.link}}">
                 {{post.title}}
               </a>
-              <span ng-hide="post.link">
+              <span data-ng-hide="post.link">
                 {{post.title}}
               </span>
       </span>
@@ -90,13 +90,13 @@
         <a href="#/posts/{{post._id}}">Comments</a>
       </span>
     </div>
-    <form ng-submit="addPost()" style="margin-top:30px;">
+    <form data-ng-submit="addPost()" style="margin-top:30px;">
       <h3>Add a new post</h3>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Title" ng-model="title"></input>
+        <input type="text" class="form-control" placeholder="Title" data-ng-model="title"></input>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Link" ng-model="link"></input>
+        <input type="text" class="form-control" placeholder="Link" data-ng-model="link"></input>
       </div>
       <button type="submit" class="btn btn-primary">Post</button>
     </form>
@@ -105,25 +105,25 @@
   <script type="text/ng-template" id="/posts.html">
     <div class="page-header">
       <h3>
-      <a ng-show="post.link" href="{{post.link}}">
+      <a data-ng-show="post.link" href="{{post.link}}">
         {{post.title}}
       </a>
-      <span ng-hide="post.link">
+      <span data-ng-hide="post.link">
         {{post.title}}
       </span>
     </h3>
     </div>
 
-    <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
-      <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span> {{comment.upvotes}} - by {{comment.author}}
+    <div data-ng-repeat="comment in post.comments | orderBy:'-upvotes'">
+      <span class="glyphicon glyphicon-thumbs-up" data-ng-click="incrementUpvotes(comment)"></span> {{comment.upvotes}} - by {{comment.author}}
       <span style="font-size:20px; margin-left:10px;">
       {{comment.body}}
     </span>
     </div>
-    <form ng-submit="addComment()" style="margin-top:30px;">
+    <form data-ng-submit="addComment()" style="margin-top:30px;">
       <h3>Add a new comment</h3>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
+        <input type="text" class="form-control" placeholder="Comment" data-ng-model="body"></input>
       </div>
       <button type="submit" class="btn btn-primary">Post</button>
     </form>
