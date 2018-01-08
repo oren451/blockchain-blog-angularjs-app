@@ -1,4 +1,6 @@
-var angularApp = angular.module('blockchainBlog', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt', 'ngMaterial', 'auth0.lock'])
+'use strict'
+var angularApp = angular.module('blockchainBlog',
+  ['ui.router', 'auth0', 'angular-storage', 'angular-jwt', 'ngMaterial']);
 
 angularApp.config([
   '$provide',
@@ -20,7 +22,8 @@ angularApp.config([
     $stateProvider
       .state('login', {
         url: '/login',
-        templateUrl: '/login.html'
+        templateUrl: '/login.html',
+
       })
       .state('profile', {
         url: '/profile',
@@ -48,7 +51,7 @@ angularApp.config([
         }
       });
 
-    $urlRouterProvider.otherwise('login');
+    $urlRouterProvider.otherwise('/login');
 
     function redirect($q, $injector, store, $location) {
       return {
@@ -189,15 +192,16 @@ angularApp.controller('profileController', ['$http', 'store', function($http, st
   }
 }]);
 
-angularApp.controller('toolbarController', ['auth', 'store', '$location',
-  function(auth, store, $location) {
+angularApp.controller('toolbarController', ['$scope','auth', 'store', '$location',
+  function($scope, auth, store, $location) {
+
     var vm = this;
-    vm.login = login;
-    vm.logout = logout;
+    vm.login = $scope.login;
+    vm.logout = $scope.logout;
     vm.auth = auth;
 
-    function login() {
-
+    $scope.login = function() {
+      console.log('login');
       auth.signin({}, function(profile, token) {
         store.set('profile', profile);
         store.set('id_token', token);
@@ -207,11 +211,12 @@ angularApp.controller('toolbarController', ['auth', 'store', '$location',
       });
     }
 
-    function logout() {
+    $scope.logout = function() {
+      console.log('logout');
       store.remove('profile');
       store.remove('id_token');
       auth.signout();
-      $location.path('/home');
+      $location.path('/login');
     }
   }
 ]);

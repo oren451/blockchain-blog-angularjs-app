@@ -3,8 +3,8 @@ var jwt = require('express-jwt');
 var router = express.Router();
 
 var authCheck = jwt({
+  secret: new Buffer('rDMRNGlI3Y9Ezi04DskHst4wCHCtiO34ZRDEqxFKaCfjbv6ZbWf4GMESVt1s5pB6'),
   audience: 'l0bhTMUYEbzBkT6PMaeXuBhUruREwiZR',
-  secret: 'rDMRNGlI3Y9Ezi04DskHst4wCHCtiO34ZRDEqxFKaCfjbv6ZbWf4GMESVt1s5pB6',
 });
 
 /* GET home page. */

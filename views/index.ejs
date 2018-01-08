@@ -27,13 +27,13 @@
 </head>
 
 <body data-ng-app="blockchainBlog">
-  <md-toolbar data-ng-controller="toolbarController">
-    <div class="md-toolbar-tools" data-ng-controller="profileController">
+  <md-toolbar>
+    <div class="md-toolbar-tools" ng-controller="toolbarController">
       <h2> <span> Blockchain Blog </span> </h2>
       <span flex></span>
-      <md-button aria-label="Login" data-ng-click="toolbarController.login()" data-ng-if="toolbarController.auth.isAuthenticated()">Login</md-button>
-      <md-button aria-label="Profile" ui-serf="profile" data-ng-if="toolbarController.auth.isAuthenticated()">Profile</md-button>
-      <md-button aria-label="Logout" data-ng-click="toolbarController.logout()" data-ng-if="toolbarController.auth.isAuthenticated()">Logout</md-button>
+      <md-button aria-label="Login" data-ng-click="login()" data-ng-if="!auth.isAuthenticated()">Login</md-button>
+      <md-button aria-label="Profile" href="#/profile" data-ng-if="auth.isAuthenticated()">Profile</md-button>
+      <md-button aria-label="Logout" data-ng-click="logout()" data-ng-if="auth.isAuthenticated()">Logout</md-button>
     </div>
   </md-toolbar>
   <div class="row">
